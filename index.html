@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todo list</title>
+    </head>
+
+    <body>
+        <h1>Todo list</h1>
+        <input type = 'text' id = 'taskInput'>
+        <button id = 'addButton'>Add</button>
+        <ul id = 'taskList'></ul>
+
+
+
+
+
+
+        <script >
+            const taskInput = document.getElementById('taskInput');
+            const addButton = document.getElementById('addButton');
+            const taskList = document.getElementById('taskList');
+
+            taskInput.addEventListener('keypress', (event) => {
+                if(event.key ==='Enter'){
+                    addToList();
+                }
+            })
+
+               const addToList =()=>{
+                const task = taskInput.value;
+                const li = document.createElement('li');
+                const deleteButton = document.createElement('button');
+                const strikeButton = document.createElement('button');
+                li.textContent = task;
+                deleteButton.textContent = 'Delete';
+                strikeButton.textContent = 'Strike';
+                li.appendChild(deleteButton);
+                li.appendChild(strikeButton);
+                taskList.appendChild(li);
+                deleteButton.addEventListener('click', () => {
+                    taskList.removeChild(li);
+                });
+                strikeButton.addEventListener('click', () => {
+                    li.style.textDecoration = 'line-through';
+                });
+                
+                
+                taskInput.value = ' ';
+
+            }
+            addButton.addEventListener('click', addToList);
+
+         
+
+        </script>
+    </body>
+</html>
